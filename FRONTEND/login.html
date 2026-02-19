@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="parent">
+            <header>
+                <a href="index.html">Notes Saver</a>
+            </header>
+            <nav>
+                <ul id="navList">
+                    <li><button id="login">Login</button></li>
+                    <li><button id="colorSwitch">ColorSwitch</button></li>
+                </ul>
+            </nav>
+            <main>
+                <div id = "loginCard">
+                    <h1>Enter Login Info</h1>
+                    <input type="text" id="userName" placeholder="Username">
+                    <input type="text" id="passWord" placeholder="Password">
+                    <input type="text" id="eMail" placeholder="email">
+                    <button id="oLogin">Login</button>
+                    <p class="warning">All passwords must be 6+ characters</p>
+                    <p class="warning">All emails must be valid emails.</p>
+                </div>
+            </main>
+            <footer>
+                <p>Any suggestions? Contact Owne!r</p>
+            </footer>
+        </div>
+        <script src="script.js"></script>
+        <script>
+    let colorSwitchButton = document.getElementById("colorSwitch");
+    if (colorSwitchButton) {
+        colorSwitchButton.addEventListener("click", colorSwitch);
+    }
+    let oLogBut = document.getElementById("oLogin");
+
+    oLogBut.addEventListener("click", async function() {
+        let username = document.getElementById("userName").value;
+        let password = document.getElementById("passWord").value;
+        let email = document.getElementById("eMail").value;
+        if (!username || !password || !email) {
+            alert("Please fill out all fields!");
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/v1/users/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    email: email,
+                    password: password
+                })
+            });
+            const wait = await response.json();
+            if (response.ok) {
+                localStorage.setItem("userEmail", email);
+                localStorage.setItem("userName", wait.user.user);
+                alert(wait.message);
+                window.location.href = "notes.html";
+            } else {
+                alert(wait.message);
+            }
+        } catch (error) {
+
+            alert(wait.message);
+         }
+    });
+
+
+    colorSwitchButton.addEventListener("click", colorSwitch);
+    let login = document.getElementById("login");
+    login.addEventListener("click", function() {
+        // Navigate to another page
+        window.location.href = "login.html";
+    });
+</script>
+    </body>
+</html>

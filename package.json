@@ -1,0 +1,28 @@
+{
+  "name": "backendvid",
+  "version": "1.0.0",
+  "description": "following video for backend",
+  "homepage": "https://github.com/Snakestongue/BACKENDVID#readme",
+  "bugs": {
+    "url": "https://github.com/Snakestongue/BACKENDVID/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snakestongue/BACKENDVID.git"
+  },
+  "license": "ISC",
+  "author": "Snake",
+  "type": "module",
+  "main": "BACKEND/index.js",
+  "scripts": {
+    "start": "node BACKEND/src/index.js",
+    "dev": "nodemon BACKEND/src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "validator": "^13.15.26"
+  }
+}

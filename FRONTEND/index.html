@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="parent">
+            <header>
+                <a href="index.html" id="headTitle">Notes Saver</a>
+            </header>
+            <nav>
+                <ul id="navList">
+                    <li><button id="login">Login</button></li>
+                    <li><button id="colorSwitch">ColorSwitch</button></li>
+                </ul>
+            </nav>
+            <main>
+                <div id = "mainIndex">
+                    <p>Welcome to Notes Saver! Any questions don't be afraid to message me! Click Login to start!</p>
+                    <p>Here are some common questions one may face.</p>
+                    <ul>
+                        <li>Where can I get my notes from?</li>
+                        <ul>
+                            <li>Click Login and then login with your information and start typing away!</li>
+                        </ul>
+                        <li>How can I add notes?</li>
+                        <ul>
+                            <li>Click on the left box and start typing!</li>
+                        </ul>
+                        <li>How can I delete my saved notes?</li>
+                        <ul>
+                            <li>Unfortunatly currently all saved notes are permant. We suggest contacting
+                                owner to delete all notes or creating a new account.
+                            </li>
+                        </ul>
+                        <li>Why does it keep saying Internal Server Error when I have text placed in textbox?</li>
+                        <ul>
+                            <li>We have a minimum character limit of 15 characters.
+                            </li>
+                        </ul>
+                        <li>What does the reset button do?</li>
+                        <ul>
+                            <li>The reset button just clears all unsaved text in the textbox.
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+            </main>
+            <footer>
+                <p>Any suggestions? Contact Owne!r</p>
+            </footer>
+        </div>
+        <script src="script.js"></script>
+        <script>
+            let colorSwitchButton = document.getElementById("colorSwitch");
+            colorSwitchButton.addEventListener("click", colorSwitch);
+            let login = document.getElementById("login");
+            login.addEventListener("click", function() {
+                // Navigate to another page
+                window.location.href = "login.html";
+            });
+        </script>
+    </body>
+</html>
