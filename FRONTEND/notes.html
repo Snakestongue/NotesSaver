@@ -1,6 +1,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+                        <title>Note Saver || Notes</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+
     </head>
     <body>
         <div id="parent">
@@ -15,16 +18,20 @@
                 </ul>
             </nav>
             <main>
-                <div id="keyboard"> </div>
 
                 <div id="overall">
                     <div id="textbox"> </div>
                     <div id="view"></div>
                 </div>
+
                 <div id="buttons">
                     <input type="text" id="email" placeholder="email" disabled>
+
                 </div>
-            </main>
+                <div id="keyboard"></div>
+
+
+                
             <footer>
                 <p>Not working? Check the <a id="footerLink" href="../index.html">main page</a> for help!</p>
             </footer>
@@ -119,7 +126,7 @@
                     alert("Internal issue");
                 }
             });
-            newKeyboard();
+           
 
 
              let colorSwitchButton = document.getElementById("colorSwitch");
@@ -132,6 +139,7 @@
             q.addEventListener("click", function() {
                 window.location.href = "qAndA.html";
             });
+             newKeyboard();
         </script>
     </body>
 </html>

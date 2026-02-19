@@ -164,6 +164,18 @@ let navs = document.getElementsByClassName("navs");
     }
 }
 
+
+
+var alpha = ['1', '2', '3', '4', '5', '6', '7', '8',
+'9', '0', 'q','w','e','r','t','y','u','i','o','p','a','s',
+'d','f','g','h','j','k','l',';','\'',
+'z','x','c','v','b','n','m', ',','.', ' '];
+        
+        
+var capitals = ['!', '@', '#', '$', '%', '^', '&', '*',
+'(', ')', 'Q','W','E','R','T','Y','U','I','O','P','A','S',
+'D','F','G','H','J','K','L',':','"',
+'Z','X','C','V','B','N','M', '<','>', ' '];
 function newKeyboard(){
     let textbox = document.getElementById("textbox");
     let bottomDiv = document.getElementById("buttons")
@@ -191,6 +203,83 @@ function newKeyboard(){
          textbox.innerHTML = " "
     })
     bottomDiv.appendChild(resetB);
+    let keyboard = document.getElementById("keyboard");
+    
 
-
+    //shift
+    let shiftOn = false;
+    let shift = document.createElement("button");
+    shift.innerHTML = "shift"
+    shift.style.color = "white"
+        shift.style.backgroundColor = "black"
+        shift.style.width = "50px"
+    shift.style.border = "1px solid white";
+    shift.addEventListener("click", function(){
+        
+        shiftOn = true;
+    })
+    
+    //a-z + space 
+    for (let i =0; i<alpha.length; i++){
+        let create = document.createElement("button");
+        
+        create.innerHTML = alpha[i];
+        create.style.color = "white"
+        create.style.backgroundColor = "black"
+        create.style.width = "35px"
+        create.style.height = "25px"
+        create.style.border = "1px solid white";
+        if (alpha[i] == "z" || alpha[i]=="q" || alpha[i]=="a" || alpha[i] == ' '){
+            let br = document.createElement("br");
+            keyboard.appendChild(br);
+        }
+        
+        if (alpha[i] == ' '){
+                create.innerHTML = ("space");
+                create.style.color = "white"
+                create.style.backgroundColor = "black"
+                create.style.width = "50px"
+                create.style.border = "1px solid white";
+                }
+        create.addEventListener("click", function(){
+            if (shiftOn == true){
+                textbox.innerHTML +=capitals[i];
+                shiftOn =false;
+            }else{
+            textbox.innerHTML += alpha[i];
+            }
+        });
+        keyboard.appendChild(create);
+    }
+    
+    //backSpace
+    let backSpace = document.createElement("button");
+    backSpace.innerHTML = "backspace"
+    backSpace.style.color = "white"
+        backSpace.style.backgroundColor = "black"
+        backSpace.style.width = "80px"
+        backSpace.style.border = "1px solid white";
+    backSpace.addEventListener("click", function(){
+        textbox.innerHTML = textbox.innerHTML.slice(0, -1);
+ 
+    })
+    
+    //enter
+    let enterB = document.createElement("button");
+    enterB.innerHTML = "enter";
+    enterB.style.backgroundColor = "black"
+        enterB.style.width = "50px"
+    enterB.style.color = "white"
+        enterB.style.border = "1px solid white";
+    enterB.addEventListener("click", function(){
+        let enterBreak = document.createElement("br")
+        textbox.appendChild(enterBreak);
+    })
+    
+    
+    keyboard.appendChild(shift);
+    keyboard.appendChild(enterB);
+    keyboard.appendChild(backSpace);
+    //keyboard.appendChild(resetB);
 }
+    
