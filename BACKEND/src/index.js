@@ -40,7 +40,7 @@ dotenv.config({
 const server = express();
 server.use("/", app);
 server.use("/FRONTEND", express.static(path.join(__dirname, "../../FRONTEND")));
-server.get("*", (req, res) => {
+server.get("{/*path}", (req, res) => {
     res.sendFile(path.join(__dirname, "../../index.html"));
 });
 const startServer = async () => {
