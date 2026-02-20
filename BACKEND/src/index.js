@@ -22,7 +22,6 @@
 
 // startServer();
 
-
 import dotenv from "dotenv";
 import connectDB from "./Configs/database.js";
 import app from "./app.js"; // This is your main app
@@ -41,5 +40,4 @@ const startServer = async () => {
         console.log("MONGO DB connection failed", error);
     }
 };
-
 startServer();

@@ -8,27 +8,24 @@ const register =  async(req, res) => {
         }
         //exist
         const existing = await User.findOne({email: email.toLowerCase()})
-        
         if (existing){
             const isPasswordMatch = existing.password == password;
             const isEmailMatch = existing.email.toLowerCase() == email.toLowerCase();
-          const isUsernameMatch = existing.username.toLowerCase() == username.toLowerCase();
-            //return res.status(400).json({message: "User already registered"})
+            const isUsernameMatch = existing.username.toLowerCase() == username.toLowerCase();
+
             if (isPasswordMatch && isUsernameMatch && isEmailMatch){
-            return  res.status(400).json({
-             message: "You already signed up! Go to login page!",
-            })
+                return  res.status(400).json({
+                    message: "You already signed up! Go to login page!",
+                });
             }else if (isUsernameMatch && isEmailMatch){
                 return  res.status(400).json({
-             message: "Incorrect Password!"
-            }) 
+                    message: "Incorrect Password!"
+                });
             }else{
                 return  res.status(400).json({
-             message: "Incorrect Username or Email!"
-            }) 
+                    message: "Incorrect Username or Email!"
+                });
             }
-          
-        
         }
         //create
         const user = await User.create({
@@ -41,13 +38,11 @@ const register =  async(req, res) => {
             message: "User registered successfully",
             user: {id: user._id, email: user.email, user: user.username}
         })
-    } catch (error) {
+    }catch (error) {
         console.log("Register error", error)
         res.status(500).json({message:"Internal server error"})//, error: error.message})
     }
 }
-
 export{
     register
 }
-

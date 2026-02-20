@@ -1,12 +1,10 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-                        <title>Note Saver || Login</title>
-                        <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
+        <title>Note Saver || Login</title>
+        <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div id="parent">
@@ -18,13 +16,12 @@
                     <li><button class="navs" id="login">Login</button></li>
                     <li><button id="SUP" class="navs">Sign Up</button></li>
                     <li><button id="colorSwitch" class="navs">ColorSwitch</button></li>
-                    <li><button id="qa" class="navs">Q and A</button></li>
-                    
+                    <li><button id="qa" class="navs">Q and A</button></li>  
                 </ul>
             </nav>
             <main>
                 <div id = "loginCard">
-                    <h1>Enter Login Info</h1>
+                    <h1>Login to your account</h1>
                     <input type="text" id="userName" placeholder="Username" class="logins">
                     <input type="password" id="passWord" placeholder="Password" class="logins">
                     <button id="oLogin">Login</button>
@@ -33,64 +30,57 @@
             </main>
            <footer>
                 <a id="footerLink" href="https://github.com/Snakestongue">Github</a>  
-             <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
-
+                <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
             </footer>
         </div>
         <script src="script.js"></script>
         <script>
-    let colorSwitchButton = document.getElementById("colorSwitch");
-    if (colorSwitchButton) {
-        colorSwitchButton.addEventListener("click", colorSwitch);
-    }
-    let oLogBut = document.getElementById("oLogin");
+            let colorSwitchButton = document.getElementById("colorSwitch");
+            let oLogBut = document.getElementById("oLogin");
+            let login = document.getElementById("login");
+            let q = document.getElementById("qa")
+            let sup = document.getElementById("SUP")
 
-    oLogBut.addEventListener("click", async function() {
-        let username = document.getElementById("userName").value.trim();
-        let password = document.getElementById("passWord").value.trim();
-        if (!username || !password) {
-            alert("Please fill out all fields!");
-            return;
-        }
-        try {
-            const response = await fetch("/api/v1/users/login", { 
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
+            oLogBut.addEventListener("click", async function() {
+                let username = document.getElementById("userName").value.trim();
+                let password = document.getElementById("passWord").value.trim();
+                if (!username || !password) {
+                    alert("Please fill out all fields!");
+                    return;
+                }
+                try {
+                    const response = await fetch("/api/v1/users/login", { 
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+                    });
+                    const wait = await response.json();
+                    if (response.ok) {
+                        localStorage.setItem("userName", wait.user.user);
+                        alert(wait.message);
+                        window.location.href = "notes.html";
+                    } else {
+                        alert(wait.message);
+                    }
+                } catch (error) {
+                    alert("Internal Server Error");
+                }
             });
-            const wait = await response.json();
-            if (response.ok) {
-                localStorage.setItem("userName", wait.user.user);
-                alert(wait.message);
-                window.location.href = "notes.html";
-            } else {
-                alert(wait.message);
-            }
-        } catch (error) {
 
-            alert("Internal Server Error");
-         }
-    });
-
-
-    colorSwitchButton.addEventListener("click", colorSwitchLogin);
-    let login = document.getElementById("login");
-    let q = document.getElementById("qa")
-    let sup = document.getElementById("SUP")
-    login.addEventListener("click", function() {
-        window.location.href = "login.html";
-    });
-    q.addEventListener("click", function() {
-       
-        window.location.href = "qAndA.html";
-    });
-    sup.addEventListener("click", function() {
-        window.location.href = "signup.html";
-    });
-</script>
+            colorSwitchButton.addEventListener("click", colorSwitchLogin);
+            login.addEventListener("click", function() {
+                window.location.href = "login.html";
+            });
+            q.addEventListener("click", function() {
+            
+                window.location.href = "qAndA.html";
+            });
+            sup.addEventListener("click", function() {
+                window.location.href = "signup.html";
+            });
+        </script>
     </body>
-    <!-- npm --prefix BACKEND run dev -->
 </html>

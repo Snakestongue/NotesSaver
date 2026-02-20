@@ -3,24 +3,21 @@ body, header, div, #parent, main, nav ul{
     padding:0px;
     font-family: sans-serif;
 }
-
 #parent{
     display: grid;
     margin:0px;
     min-height: 100vh;
     padding:0px;
-    grid-template-rows: auto 50px 1fr 50px;
+    grid-template-rows: auto auto 1fr auto;
     grid-template-columns: auto;
 
-        grid-template-areas: 
+    grid-template-areas: 
         "header"
         "nav"
         "content"
         "footer";
 }
-
 header{
-    
     grid-area:header;
     background-color: rgb(0, 0, 0);
     padding:20px;
@@ -45,7 +42,6 @@ img{
     margin:auto;
     color:white;
 }
-
 nav ul {
     display: flex;                
     list-style: none;
@@ -64,26 +60,21 @@ nav ul li button {
     text-align: center;
     padding: 20px 0;     
 }
-nav button:link, nav button:visited{
-    text-decoration:none;
-}
-nav button:hover, nav button:active {
-    background-color: #FFD700;
-    color: black;
-   text-decoration:none;
-}
 header a:link, header a:visited{
     text-decoration:none;
     color: #FFD700;
-
 }
 header a:hover, header a:active {
     color:#FFD700;
-   text-decoration:none;
+    text-decoration:none;
 }
 #indexOver{
     display: flex;
     flex-direction: row;
+    justify-content: center; 
+    align-items: flex-start;  
+    width: 100%;            
+    gap: 20px;
 }
 #sideIndex{
     height:500px;
@@ -93,7 +84,6 @@ header a:hover, header a:active {
     border-radius: 10px;
     padding:30px;
     box-shadow: 0 0 30px #FFD700;
-    
     color: white;
     margin:50px 30px;
 }
@@ -107,7 +97,6 @@ header a:hover, header a:active {
     box-shadow: 0 0 30px #FFD700;
     color: white;
     margin:50px 30px;
-
 }
 #mainIndex button{
     width:150px;
@@ -118,7 +107,6 @@ header a:hover, header a:active {
     border-radius: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 #QANDACARD{
     height:500px;
     width:65%;
@@ -132,6 +120,9 @@ header a:hover, header a:active {
     margin-top:50px;
     overflow-y: auto;
 }
+#sideIndex, #QANDACARD, #mainIndex{
+    min-height: 500px
+}
 button:hover{
     cursor: pointer;
 }
@@ -139,6 +130,11 @@ main {
     grid-area: content;
     background-color: black;
     overflow-y: auto;  
+    display: flex;       
+    flex-direction: column;   
+    justify-content: center;   
+    align-items: center;      
+    padding: 20px 0;
 }
 #loginCard input, #signUpCard input{
     width:150px;
@@ -150,7 +146,6 @@ input{
     border:1px solid #FFD700;
     border: 10px;
 }
-
 #signUpCard, #loginCard{
     width: 90%;     
     max-width: 800px; 
@@ -162,8 +157,7 @@ input{
     padding: 75px 25px;       
     box-shadow: 0 0 120px #FFD700;
     box-sizing: border-box;
-}
-   
+} 
 #oLogin{
     background-color: black;
     color:white;
@@ -177,15 +171,14 @@ input{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 60px;                 /* Increased gap between Textbox and View */
-    padding: 40px 80px;        /* More side margin to pull boxes away from edges */
+    gap: 60px;              
+    padding: 40px 80px;      
     box-sizing: border-box; 
     height: auto;
 }
 .lefts{
    display: flex;
     flex-direction: column;
-    /* CHANGE: Use max-width instead of width so it can shrink on small screens */
     width: 100%; 
     max-width: 600px; 
     flex-shrink: 0;
@@ -196,7 +189,7 @@ input{
     flex-direction: column;
 }
 #title{
-    height: 60px;            /* Titles usually don't need to be huge */
+    height: 60px;           
     flex-shrink: 0;
     max-width:600px;
      margin: 20px auto;
@@ -207,13 +200,11 @@ input{
     padding: 15px;
     overflow-y: auto;
     box-sizing: border-box; 
-    margin: 0 0 10px 0; /* Remove auto margins, add bottom spacing */
+    margin: 0 0 10px 0;
     width: 100%;
-
 }
 #textbox {
     width: 100%;
-    /* CHANGE: Use min-height instead of fixed height so it can grow */
     min-height: 310px; 
     border: 3px solid #FFD700;
     border-radius: 10px;
@@ -222,7 +213,6 @@ input{
     overflow-y: auto;
     box-sizing: border-box; 
     box-shadow: 0 0 120px #FFD700;
-
 }
 #view {
     flex: 1;
@@ -235,10 +225,6 @@ input{
     box-sizing: border-box;
     box-shadow: 0 0 120px #FFD700;
 }
-
-
-
-
 #keyboard{
     text-align: center;
 }
@@ -248,7 +234,6 @@ input{
     align-items: center;
     margin-top:50px;
 }
-
 footer {
     grid-area: footer;
     background-color: rgb(15, 15, 15);
@@ -259,7 +244,6 @@ footer {
     padding: 20px 0px;               
     text-align: center;           
 }
-
 #footerLink{
     margin:10px 30px;
     color: #FFD700;
@@ -272,66 +256,84 @@ footer a:hover, footer a:active {
    text-decoration:none;
    opacity: .5;
 }
-
-
 .svg{
     width:50px;
 }
 #GS:hover{
     opacity: .5;
 }
+#usernameInput{
+    border:1px solid white;
+    border-radius: 10px;
+    height:30px;
+}
+.button{
+    background-color: black;
+    color:white;
+    border:1px solid white;
+    width:120px;
+    height:30px;
+    border-radius: 10px;
+    margin:0px 10px;
+    margin-bottom: 10px; 
+}
 
-
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     #indexOver {
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        justify-content: center; 
+        align-items: flex-start;  
+        width: 85%;            
+        gap: 50px;
+        height:125%;
     }
 
     #sideIndex, #mainIndex {
-        width: 60% !important;
-        margin: 20px 0 !important;  
-        margin: 10px 20px;
+        width: 85% !important;
+        margin: 20px -10px !important;  
         min-height: 300px; 
         align-items: center;
         justify-content: center;
-    }
-    #mainIndex{
-        height:75%;
+        height:95%;
+        overflow-y: auto;
     }
     #loginCard, #signUpCard {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;  
-    justify-content: center; 
-    width:80%;
-    margin:20px auto;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;  
+        justify-content: center; 
+        width:80%;
+        margin:20px auto;
     }
     #oLogin, #loginCard input, #signUpCard input{
         width:95%;
+        margin:15px;
     }
     #overall {
         flex-direction: column; 
-        margin-top:10px;
-        padding: 0px 20px;     
-        height: auto; 
-        gap:60px;
-    }
-    .lefts {
-        max-width: 100%;      
+        align-items: center;   
+        padding: 20px 10px;   
         width: 100%;
-        gap:15px;
+        box-sizing: border-box;
     }
-    #title, #textbox, #view {
-        width: 100%;           
-        max-width: 100%;
-        /* margin: 20px 0;     */
-        height: auto;          
-        min-height: 150px;     
+    .lefts{
+        width: 83%;            
+        max-width: none;        
+        align-items: center;
     }
-    #title{
-        min-height: 60px;
-        
+    #view {
+        width: 83% !important; 
+        min-height: 300px;
+        height: auto;     
+    }
+    #buttons {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px; 
+        padding-bottom: 20px; 
+    }
+    footer p, footer a{
+        margin:0px 5px;
     }
 }

@@ -1,138 +1,108 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-                        <title>Note Saver || Notes</title>
+        <title>Note Saver || Notes</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div id="parent">
            <header>
                 <a href="../index.html" id="headTitle">Notes Saver by <span id="tongue">Snakestongue</span></a>
             </header>
-             <nav>
+            <nav>
                 <ul id="navList">
                     <li><button class="navs" id="login">Login</button></li>
                     <li><button id="SUP" class="navs">Sign Up</button></li>
                     <li><button id="colorSwitch" class="navs">ColorSwitch</button></li>
                     <li><button id="qa" class="navs">Q and A</button></li>
-                    
+                
                 </ul>
             </nav>
             <main>
                 <div id="overall">
-                <div class="lefts">
-
-                    <div id="title" class="stacked" contenteditable="true">Note Title Here...</div>
-                    <div id="textbox" class="stacked" contenteditable="true">Start typing note...</div>
+                    <div class="lefts">
+                        <div id="title" class="stacked" contenteditable="true">Note Title Here...</div>
+                        <div id="textbox" class="stacked" contenteditable="true">Start typing note...</div>
+                    </div>
+                    <div id="view"></div>
                 </div>
-
-                <div id="view"></div>
-              </div>
-
                 <div id="buttons">
-                    <input type="text" id="email" placeholder="email" disabled>
-
+                    <input type="text" id="userNameInput" placeholder="username" class="button" disabled>  
+                    <button id="saveButton" class="button">Save</button>
+                    <button id="getButton" class="button">Get</button>
                 </div>
-                <div id="keyboard"></div>
             </main>
-
-                
             <footer>
                 <a id="footerLink" href="https://github.com/Snakestongue">Github</a>  
-             <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
-
+                <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
             </footer>
         </div>
         <script src="script.js"></script>
         <script>
-            window.onload = function() {
-                let savedName = localStorage.getItem("userName");
-
-                if (savedName) {
-                    document.getElementById("email").value = savedName;
-                }
-            };
-
-
             let titles = document.getElementById("title")
             let textBOX = document.getElementById("textbox");
-            let emailInput = document.getElementById("email"); 
-            let main = document.getElementsByTagName("main")[0];
-            let saveButton = document.createElement("button");
-            let bottomDiv = document.getElementById("buttons")
             let view = document.getElementById("view");
 
-            saveButton.innerHTML = "Save";
-            saveButton.style.backgroundColor = "black";
-            saveButton.style.color = "white";
-            saveButton.style.width = "90px";
-            saveButton.style.height = "30px";
-            saveButton.style.border = "1px solid white"
-            saveButton.style.borderRadius = "10px"
-            saveButton.style.marginBottom = "15px"
+            let username = document.getElementById("userNameInput");
+            let saveButton = document.getElementById("saveButton")
+            let getButton = document.getElementById("getButton")
 
-            bottomDiv.appendChild(saveButton);
-
-
-            let getButton = document.createElement("button");
-            getButton.innerHTML = "Get";
-
-            getButton.style.backgroundColor = "black";
-            getButton.style.color = "white";
-            getButton.style.width = "90px";
-            getButton.style.height = "30px";
-            getButton.style.border = "1px solid white"
-            getButton.style.borderRadius = "10px"
-            getButton.style.marginBottom = "15px"
-
-            bottomDiv.appendChild(getButton);
-
+            let colorSwitchButton = document.getElementById("colorSwitch");
+            let sup = document.getElementById("SUP")
+            let login = document.getElementById("login");
+            let q = document.getElementById("qa")
+            
+            window.onload = function() {
+                let savedName = localStorage.getItem("userName");
+                if (savedName) {
+                    document.getElementById("userNameInput").value = savedName;
+                }
+            };
 
             saveButton.addEventListener("click", async function(){
                 let content = document.getElementById("textbox").innerText.trim();   
                 let title = document.getElementById("title").innerText.trim(); 
-                let emailValue = emailInput.value; 
-                
-                if (!content || !emailValue || !title) {
+                let userNameInput = username.value; 
+                if (!content || !userNameInput || !title) {
                     alert("Please fill out the textbox!");
                     return;
                 }
-
+                if ( content=="Start typing note..." || title == "Note Title Here..."){
+                    alert("Please update text!")
+                    return;
+                }
                 try {
                     const response = await fetch("/api/v1/users/notes", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            username: emailValue,
+                            username: userNameInput,
                             content: content,
                             title: title
                         })
                     });
-                    
                     const wait = await response.json();
                     if (response.ok) {
                         alert("Notes posted");
                         textBOX.innerHTML = ""
                         titles.innerHTML = ""
-                    } else {
+                    }else {
                         alert("Failed: " + wait.message);
                     }
-                } catch (error) {
+                }catch (error) {
                     console.error(error); 
                     alert("Internal issue");
                 }
             });
             getButton.addEventListener("click", async function(){
-                let emailValue = emailInput.value; 
-                try {
-                    const response = await fetch(`/api/v1/users/notes?username=${emailValue}`, { 
+                let userNameInput = username.value;
+                try{
+                    const response = await fetch(`/api/v1/users/notes?username=${userNameInput}`, { 
                         method: "GET"
                     });
                     const data = await response.json(); 
-                    if (response.ok) {
+                    if (response.ok){
                         view.innerHTML = ""; 
                         data.notes.forEach(note => {
                             view.innerHTML += `
@@ -141,21 +111,15 @@
                             `;        
                         });
                          alert("Notes uploaded")
-                    } else {
+                    }else {
                         alert("Failed to retrieve notes: " + data.message);
                     }
-                } catch (error) {
+                }catch (error) {
                     alert("Internal issue");
                 }
             });
-           
 
-
-             let colorSwitchButton = document.getElementById("colorSwitch");
             colorSwitchButton.addEventListener("click", colorSwitchNOTES);
-            let sup = document.getElementById("SUP")
-            let login = document.getElementById("login");
-            let q = document.getElementById("qa")
             login.addEventListener("click", function() {
                 window.location.href = "login.html";
             });
@@ -165,7 +129,7 @@
             sup.addEventListener("click", function() {
                 window.location.href = "signup.html";
             });
-             newKeyboard();
+         //    newKeyboard();
         </script>
     </body>
 </html>
