@@ -167,14 +167,15 @@ input{
     border-radius: 10px;
     margin-left:20px
 }
-#overall {
+#overall{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 60px;              
-    padding: 40px 80px;      
+    justify-content: center; 
+    gap: 45px;              
+    padding: 40px;      
+    width: 95%;
     box-sizing: border-box; 
-    height: auto;
 }
 .lefts{
    display: flex;
