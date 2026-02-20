@@ -23,36 +23,18 @@
 // startServer();
 
 
-
 import dotenv from "dotenv";
 import connectDB from "./Configs/database.js";
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import app from "./app.js";
+import app from "./app.js"; // This is your main app
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({
-    path: '../.env'
-});
+dotenv.config({ path: '../.env' });
 
-const server = express();
-server.use("/", app);
-server.use("/FRONTEND", express.static(path.join(__dirname, "../../FRONTEND")));
-server.get("{/*path}", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../index.html"));
-});
 const startServer = async () => {
     try {
         await connectDB();
-
-        server.on("error", (error) => {
-            console.log("ERROR", error);
-        });
-
-        const PORT = process.env.PORT || 8000;
-        server.listen(PORT, () => {
+        
+        const PORT = process.env.PORT || 4000;
+        app.listen(PORT, () => {
             console.log(`Server is running on port #${PORT}`);
         });
     } catch (error) {

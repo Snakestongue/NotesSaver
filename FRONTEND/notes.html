@@ -22,11 +22,15 @@
                 </ul>
             </nav>
             <main>
-
                 <div id="overall">
-                    <div id="textbox"> </div>
-                    <div id="view"></div>
+                <div class="lefts">
+
+                    <div id="title" class="stacked" contenteditable="true">Note Title Here...</div>
+                    <div id="textbox" class="stacked" contenteditable="true">Start typing note...</div>
                 </div>
+
+                <div id="view"></div>
+              </div>
 
                 <div id="buttons">
                     <input type="text" id="email" placeholder="email" disabled>
@@ -45,16 +49,15 @@
         <script src="script.js"></script>
         <script>
             window.onload = function() {
-                let savedEmail = localStorage.getItem("userEmail");
                 let savedName = localStorage.getItem("userName");
 
-                if (savedEmail) {
-                    document.getElementById("email").value = savedEmail;
+                if (savedName) {
+                    document.getElementById("email").value = savedName;
                 }
             };
 
 
-
+            let titles = document.getElementById("title")
             let textBOX = document.getElementById("textbox");
             let emailInput = document.getElementById("email"); 
             let main = document.getElementsByTagName("main")[0];
@@ -89,9 +92,11 @@
 
 
             saveButton.addEventListener("click", async function(){
-                let content = document.getElementById("textbox").innerHTML;    
+                let content = document.getElementById("textbox").innerText.trim();   
+                let title = document.getElementById("title").innerText.trim(); 
                 let emailValue = emailInput.value; 
-                if (!content || !emailValue) {
+                
+                if (!content || !emailValue || !title) {
                     alert("Please fill out the textbox!");
                     return;
                 }
@@ -101,8 +106,9 @@
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            email: emailValue,
-                            content: content
+                            username: emailValue,
+                            content: content,
+                            title: title
                         })
                     });
                     
@@ -110,6 +116,7 @@
                     if (response.ok) {
                         alert("Notes posted");
                         textBOX.innerHTML = ""
+                        titles.innerHTML = ""
                     } else {
                         alert("Failed: " + wait.message);
                     }
@@ -121,18 +128,17 @@
             getButton.addEventListener("click", async function(){
                 let emailValue = emailInput.value; 
                 try {
-                    const response = await fetch(`/api/v1/users/notes?email=${emailValue}`, { 
+                    const response = await fetch(`/api/v1/users/notes?username=${emailValue}`, { 
                         method: "GET"
                     });
                     const data = await response.json(); 
                     if (response.ok) {
-                         
                         view.innerHTML = ""; 
                         data.notes.forEach(note => {
-                        
-                            view.innerHTML += `<p>${note.content}</p>`; 
-                            
-                           
+                            view.innerHTML += `
+                            <h3>${note.title}</h3>
+                            <p>${note.content}</p>
+                            `;        
                         });
                          alert("Notes uploaded")
                     } else {

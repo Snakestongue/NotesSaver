@@ -63,7 +63,7 @@
             });
             const wait = await response.json();
             if (response.ok) {
-             //   localStorage.setItem("userName", wait.user.user);
+                localStorage.setItem("userName", wait.user.user);
                 alert(wait.message);
                 window.location.href = "notes.html";
             } else {

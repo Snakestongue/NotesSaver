@@ -30,10 +30,16 @@ const userSchema = new Schema({
         }
     },
     notes: [{
+        title:{
+           type: String,
+            required: true,
+            trim: true,
+            minlength: 1
+            },
         content: { 
             type: String, 
             required: true, 
-            minlength: 10 
+            minlength: 1 
         },
         createdAt: { 
             type: Date, 

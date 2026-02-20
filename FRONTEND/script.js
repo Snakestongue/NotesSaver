@@ -155,6 +155,7 @@ function colorSwitchNOTES(){
 let navs = document.getElementsByClassName("navs");
 let footer = document.getElementsByTagName("footer")[0];
     let footLink = document.getElementById("footerLink")
+    let title = document.getElementById("title")
     boo= !boo
     if (!boo){
         for(let i=0; i<navs.length; i++){
@@ -170,6 +171,8 @@ let footer = document.getElementsByTagName("footer")[0];
         textbox.style.boxShadow = "0 0 120px #00ff2f"
          view.style.border = "3px solid #00ff2f"
         view.style.boxShadow = "0 0 120px #00ff2f"
+        title.style.border = "3px solid #00ff2f"
+        title.style.boxShadow = "0 0 120px #00ff2f"
         
     }else{
        for(let i=0; i<navs.length; i++){
@@ -181,6 +184,8 @@ let footer = document.getElementsByTagName("footer")[0];
         
         textbox.style.border = "3px solid #FFD700"
         textbox.style.boxShadow = "0 0 120px #FFD700"
+         title.style.border = "3px solid #FFD700"
+        title.style.boxShadow = "0 0 120px #FFD700"
          view.style.border = "3px solid #FFD700"
         view.style.boxShadow = "0 0 120px #FFD700"
         footer.style.color = "#FFD700"
@@ -243,23 +248,22 @@ var capitals = ['!', '@', '#', '$', '%', '^', '&', '*',
 function newKeyboard(){
     let textbox = document.getElementById("textbox");
     let bottomDiv = document.getElementById("buttons")
-    textbox.innerHTML = ""
     let main = document.getElementsByTagName("main")[0];
     let keyboard = document.getElementById("keyboard");
     let shiftOn = false;
 
-    document.addEventListener("keydown", function(event) {
-    if (event.key == " ") {
-        event.preventDefault(); //should stop space jumping
-        textbox.innerHTML += " ";
-    } else if (event.key == "Backspace") {
-        textbox.innerHTML = textbox.innerHTML.slice(0, -1);
-    } else if (event.key == "Enter") {
-        textbox.innerHTML += "<br>";
-    } else if (event.key.length == 1) {
-        textbox.innerHTML += event.key;
-    }
-    });
+    // document.addEventListener("keydown", function(event) {
+    // if (event.key == " ") {
+    //     event.preventDefault(); //should stop space jumping
+    //     textbox.innerHTML += " ";
+    // } else if (event.key == "Backspace") {
+    //     textbox.innerHTML = textbox.innerHTML.slice(0, -1);
+    // } else if (event.key == "Enter") {
+    //     textbox.innerHTML += "<br>";
+    // } else if (event.key.length == 1) {
+    //     textbox.innerHTML += event.key;
+    // }
+    // });
     
     //a-z + space 
     for (let i=0; i<alpha.length; i++){
@@ -410,4 +414,5 @@ function newKeyboard(){
     keyboard.appendChild(backSpace);
     keyboard.appendChild(resetB);
 }
-    
+  
+
