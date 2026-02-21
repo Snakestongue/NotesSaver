@@ -1,4 +1,6 @@
 import {User} from "../Models/user.model.js";
+import bcrypt from "bcrypt";
+
 const register =  async(req, res) => {
     try {
         const {username, email, password} = req.body
@@ -7,31 +9,29 @@ const register =  async(req, res) => {
             return res.status(400).json({message: "All field must be filled out"});
         }
         //exist
-        const existing = await User.findOne({email: email.toLowerCase()})
-        if (existing){
-            const isPasswordMatch = existing.password == password;
-            const isEmailMatch = existing.email.toLowerCase() == email.toLowerCase();
-            const isUsernameMatch = existing.username.toLowerCase() == username.toLowerCase();
-
-            if (isPasswordMatch && isUsernameMatch && isEmailMatch){
-                return  res.status(400).json({
-                    message: "You already signed up! Go to login page!",
-                });
-            }else if (isUsernameMatch && isEmailMatch){
-                return  res.status(400).json({
-                    message: "Incorrect Password!"
-                });
-            }else{
-                return  res.status(400).json({
-                    message: "Incorrect Username or Email!"
-                });
-            }
+        const existingEmail = await User.findOne({
+            email: email.toLowerCase()
+        });
+        if (existingEmail) {
+            return res.status(400).json({
+                message: "Email already registered. Try another email or login!"
+            });
         }
+        const existingUserName = await User.findOne({ 
+            username: username.toLowerCase() 
+        });
+        if (existingUserName){
+            return res.status(400).json({
+                message: "Username already registered. Try another username or login!"
+            });
+        }
+        const saltRounds = 12;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
         //create
         const user = await User.create({
-            username,
+            username: username.toLowerCase(),
             email: email.toLowerCase(),
-            password,
+            password: hashedPassword,
             loggedIn: false
         });
         res.status(201).json({

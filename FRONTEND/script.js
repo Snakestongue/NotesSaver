@@ -30,13 +30,16 @@ function colorSwitchMAIN(){
     let sideIndex = document.getElementById("sideIndex")
     let footer = document.getElementsByTagName("footer")[0];
     let footLink = document.getElementById("footerLink")
-
+    let input = document.getElementsByTagName("input")
     boo= !boo
 
     if (!boo){
         for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
-             navs[i].style.color = "#00ff2f";   
+            navs[i].style.color = "#00ff2f";   
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#00ff2f";   
         }
 
         hT.style.color = "#00ff2f"
@@ -53,7 +56,10 @@ function colorSwitchMAIN(){
     }else{
        for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
-            navs[i].style.color = "#00ff2f";  
+            navs[i].style.color = "#FFD700";  
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#FFD700";   
         }
 
         hT.style.color = "#FFD700"
@@ -77,6 +83,7 @@ function colorSwitchLogin(){
     let navs = document.getElementsByClassName("navs");
     let footer = document.getElementsByTagName("footer")[0];
     let footLink = document.getElementById("footerLink")
+    let input = document.getElementsByTagName("input")
 
     boo= !boo
 
@@ -84,6 +91,9 @@ function colorSwitchLogin(){
         for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
             navs[i].style.color = "#00ff2f";   
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#00ff2f";   
         }
         hT.style.color = "#00ff2f"
         tongue.style.color = "white";
@@ -98,7 +108,10 @@ function colorSwitchLogin(){
     }else{
        for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
-            navs[i].style.color = "#00ff2f";     
+            navs[i].style.color = "#FFD700";     
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#FFD700";   
         }
         hT.style.color = "#FFD700"
         tongue.style.color = "white";
@@ -119,6 +132,7 @@ function colorSwitchSignUp(){
     let navs = document.getElementsByClassName("navs");
     let footer = document.getElementsByTagName("footer")[0];
     let footLink = document.getElementById("footerLink")
+    let input = document.getElementsByTagName("input")
 
     boo= !boo
 
@@ -126,6 +140,9 @@ function colorSwitchSignUp(){
         for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
             navs[i].style.color = "#00ff2f";    
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#00ff2f";   
         }
         hT.style.color = "#00ff2f"
         tongue.style.color = "white";
@@ -139,8 +156,10 @@ function colorSwitchSignUp(){
     }else{
        for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
-            navs[i].style.color = "#00ff2f";  
-             
+            navs[i].style.color = "#FFD700";   
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#FFD700";   
         }
          hT.style.color = "#FFD700"
         tongue.style.color = "white";
@@ -164,6 +183,7 @@ function colorSwitchNOTES(){
     let footer = document.getElementsByTagName("footer")[0];
     let footLink = document.getElementById("footerLink")
     let title = document.getElementById("title")
+    let input = document.getElementsByTagName("input")
 
     boo= !boo
 
@@ -171,6 +191,9 @@ function colorSwitchNOTES(){
         for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
             navs[i].style.color = "#00ff2f";       
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#00ff2f";   
         }
         hT.style.color = "#00ff2f"
         tongue.style.color = "white";
@@ -188,6 +211,9 @@ function colorSwitchNOTES(){
        for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
             navs[i].style.color = "#FFD700";  
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#FFD700";   
         }
         hT.style.color = "#FFD700"
         tongue.style.color = "white";
@@ -210,6 +236,7 @@ function colorSwitchQA(){
     let navs = document.getElementsByClassName("navs");
     let footer = document.getElementsByTagName("footer")[0];
     let footLink = document.getElementById("footerLink")
+    let input = document.getElementsByTagName("input")
 
     boo= !boo
 
@@ -217,6 +244,9 @@ function colorSwitchQA(){
         for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
             navs[i].style.color = "#00ff2f";    
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#00ff2f";   
         }
         hT.style.color = "#00ff2f"
         tongue.style.color = "white";
@@ -230,6 +260,9 @@ function colorSwitchQA(){
        for(let i=0; i<navs.length; i++){
             navs[i].style.backgroundColor = "rgb(15, 15, 15)"; 
             navs[i].style.color = "#FFD700";    
+        }
+        for(let j=0; j<input.length; j++){
+            input[j].style.borderColor = "#FFD700";   
         }
         hT.style.color = "#FFD700"
         tongue.style.color = "white";

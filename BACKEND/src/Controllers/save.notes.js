@@ -30,7 +30,7 @@ export const saveNote = async (req, res) => {
 export const getNotes = async (req, res) => {
     try {
         const { username } = req.query; 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username: username.toLowerCase() });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }

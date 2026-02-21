@@ -31,6 +31,7 @@ header{
 }
 #headTitle{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: .5s;
 }
 #headTitle:hover{
     opacity: .5;
@@ -108,6 +109,8 @@ header a:hover, header a:active {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 #QANDACARD{
+    font-size: 17px;
+    font-family: sans-serif;
     height:500px;
     width:65%;
     background-color: black;
@@ -123,9 +126,19 @@ header a:hover, header a:active {
 #sideIndex, #QANDACARD, #mainIndex{
     min-height: 500px
 }
+#saveButton, #getButton{
+    transition: .5s;
+}
+#saveButton:hover, #getButton:hover{
+    opacity: .5;
+}
 button:hover{
     cursor: pointer;
 }
+.hovers{
+    transition: 1s;
+}
+
 main {
     grid-area: content;
     background-color: black;
@@ -140,12 +153,17 @@ main {
     width:150px;
     height:50px;
 }
-input{
+input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
     background-color: black;
-    color:white;
-    border:1px solid #FFD700;
-    border: 10px;
+    color: white;
+    border: 1px solid #FFD700;
+    border-radius: 10px; 
+    transition: background-color 5000s ease-in-out 0s; 
+    
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px black inset !important;
 }
+
 #signUpCard, #loginCard{
     width: 90%;     
     max-width: 800px; 
@@ -165,7 +183,11 @@ input{
     height:50px;
     border: 4px solid #FFD700;
     border-radius: 10px;
-    margin-left:20px
+    margin-left:20px;
+    transition: .5s;
+}
+#oLogin:hover{
+    opacity: .5;
 }
 #overall{
     display: flex;
@@ -188,6 +210,12 @@ input{
 .stacked{
     display: flex;
     flex-direction: column;
+}
+.noteCards{
+    transition: transform 1s ease-in-out;
+}
+.noteCards:hover{
+    transform: scale(1.1);
 }
 #title{
     height: 60px;           
@@ -260,8 +288,11 @@ footer a:hover, footer a:active {
 .svg{
     width:50px;
 }
+#GS{
+    transition: 1s;
+}
 #GS:hover{
-    opacity: .5;
+    opacity: .2;
 }
 #usernameInput{
     border:1px solid white;
