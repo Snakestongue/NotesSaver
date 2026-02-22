@@ -115,6 +115,7 @@ header a:hover, header a:active {
     transition: .5s;
 }
 #saveButton:hover, #getButton:hover{
+    cursor: pointer;
     box-shadow: inset 0px 0px 20px white; 
 }
 .hovers{
