@@ -1,4 +1,4 @@
-body, header, div, #parent, main, nav ul{
+body, header, div, #parent, main, nav ul, footer, footer ul{
     margin:0px;
     padding:0px;
     font-family: sans-serif;
@@ -28,10 +28,13 @@ header{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color:white;
     margin-left:10px;
+    text-shadow: 5px 5px 8px white;
 }
 #headTitle{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     transition: .5s;
+    text-shadow: 5px 5px 8px #FFD700;
+    border: none;
 }
 #headTitle:hover{
     opacity: .5;
@@ -41,25 +44,25 @@ img{
 }
 #mainLink{
     margin:auto;
-    color:white;
+    color:rgb(255, 255, 255);
 }
-nav ul {
-    display: flex;                
+nav ul{
+    display: flex;
     list-style: none;
 }
-nav ul li {
-    flex: 1;   
+nav ul li{
+    flex: 1;  
 }
 nav ul li button {
     width: 100%;           
     height: 100%;
-    display: block;
     background-color: rgb(15, 15, 15);
     color: #FFD700;
     border:none;
     cursor: pointer;
     text-align: center;
     padding: 20px 0;     
+    text-shadow: 5px 5px 5px #FFD700;
 }
 header a:link, header a:visited{
     text-decoration:none;
@@ -77,36 +80,17 @@ header a:hover, header a:active {
     width: 100%;            
     gap: 20px;
 }
-#sideIndex{
+#sideIndex, #mainIndex{
     height:500px;
     width:45%;
     background-color: black;
-    border:3px solid #FFD700;;
+    border:1px solid #FFD700;;
     border-radius: 10px;
     padding:30px;
-    box-shadow: 0 0 30px #FFD700;
     color: white;
     margin:50px 30px;
-}
-#mainIndex{
-    height:500px;
-    width:45%;
-    background-color: black;
-    border:3px solid #FFD700;;
-    border-radius: 10px;
-    padding:30px;
-    box-shadow: 0 0 30px #FFD700;
-    color: white;
-    margin:50px 30px;
-}
-#mainIndex button{
-    width:150px;
-     height:30px;
-    background-color: #FFD700;
-    color: black;
-    border: 2px solid white;
-    border-radius: 10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 0 4px 20px #FFD700;
+    transition: .5s;
 }
 #QANDACARD{
     font-size: 17px;
@@ -114,14 +98,15 @@ header a:hover, header a:active {
     height:500px;
     width:65%;
     background-color: black;
-    border:3px solid #FFD700;;
+    border:1px solid #FFD700;;
     border-radius: 10px;
     padding:30px;
-    box-shadow: 0 0 30px #FFD700;
     color: white;
     margin: auto;
     margin-top:50px;
     overflow-y: auto;
+    box-shadow: 0px 4px 20px #FFD700;
+    transition: .5s;
 }
 #sideIndex, #QANDACARD, #mainIndex{
     min-height: 500px
@@ -130,15 +115,14 @@ header a:hover, header a:active {
     transition: .5s;
 }
 #saveButton:hover, #getButton:hover{
-    opacity: .5;
-}
-button:hover{
-    cursor: pointer;
+    box-shadow: inset 0px 0px 20px white; 
 }
 .hovers{
     transition: 1s;
 }
-
+#copyRight:hover{
+    cursor: default;
+}
 main {
     grid-area: content;
     background-color: black;
@@ -149,45 +133,65 @@ main {
     align-items: center;      
     padding: 20px 0;
 }
-#loginCard input, #signUpCard input{
-    width:150px;
+#loginCard input{
+    width:85%;
+    max-width: 350px;
     height:50px;
+    filter: drop-shadow(2px 2px 4px #FFD700);
+    margin: 8px 0px;
+    padding: 8px;
+}
+#signUpCard input{
+    width:85%;
+    max-width: 350px;
+    height:50px;
+    filter: drop-shadow(2px 2px 4px #FFD700);
+    margin: 0px 0px;
+    padding: 8px;
 }
 input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
     background-color: black;
     color: white;
     border: 1px solid #FFD700;
-    border-radius: 10px; 
+    border-radius: 2px; 
     transition: background-color 5000s ease-in-out 0s; 
-    
     -webkit-text-fill-color: white !important;
     -webkit-box-shadow: 0 0 0px 1000px black inset !important;
 }
-
 #signUpCard, #loginCard{
-    width: 90%;     
-    max-width: 800px; 
-    margin: 100px auto;
-    background-color: black;
-    border: 3px solid #FFD700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #FFD700;
     color: white;
+    padding: 30px;
     border-radius: 10px;
-    padding: 75px 25px;       
-    box-shadow: 0 0 120px #FFD700;
-    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width:85%;
+    max-width: 400px;
+    height: 85%;
+    max-height: 450px;
+    box-shadow: 0 0 20px #FFD700;
+    transition: .5s;
 } 
+#signUpCard{
+    height: 95%;
+    max-height: 600px;
+    margin: 30px 0px;
+}
 #oLogin{
     background-color: black;
     color:white;
-    width:90px;
+    width:85%;
     height:50px;
-    border: 4px solid #FFD700;
+    border: 1.5px solid #FFD700;
     border-radius: 10px;
-    margin-left:20px;
     transition: .5s;
+    margin-top:30px;
 }
 #oLogin:hover{
     opacity: .5;
+    cursor: pointer;
 }
 #overall{
     display: flex;
@@ -221,9 +225,9 @@ input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autof
     height: 60px;           
     flex-shrink: 0;
     max-width:600px;
-     margin: 20px auto;
-    border: 3px solid #FFD700;
-    box-shadow: 0 0 120px #FFD700;
+    margin: 20px auto;
+    border: 1px solid #FFD700;
+    box-shadow: 0 0 20px #FFD700;
     border-radius: 10px;
     color: white;
     padding: 15px;
@@ -231,29 +235,21 @@ input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autof
     box-sizing: border-box; 
     margin: 0 0 10px 0;
     width: 100%;
+    transition: .5s;
 }
 #textbox {
     width: 100%;
     min-height: 310px; 
-    border: 3px solid #FFD700;
+    border: 1px solid #FFD700;
     border-radius: 10px;
     padding: 15px;
     color: white;
     overflow-y: auto;
     box-sizing: border-box; 
-    box-shadow: 0 0 120px #FFD700;
+    box-shadow: 0 0 20px #FFD700;
+    transition: .5s;
 }
-#view {
-    flex: 1;
-    min-height: 400px;
-    border: 3px solid #FFD700;
-    border-radius: 10px;
-    padding: 15px;
-    color: white;
-    overflow-y: auto;
-    box-sizing: border-box;
-    box-shadow: 0 0 120px #FFD700;
-}
+
 #keyboard{
     text-align: center;
 }
@@ -263,36 +259,41 @@ input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autof
     align-items: center;
     margin-top:50px;
 }
-footer {
-    grid-area: footer;
-    background-color: rgb(15, 15, 15);
-    color: #FFD700;
+.notesHeading{
+    color:white;
+}
+#views{
     display: flex;
-    align-items: center;         
-    justify-content: center;     
-    padding: 20px 0px;               
-    text-align: center;           
+    flex-direction: column;
+    flex: 1;
 }
-#footerLink{
-    margin:10px 30px;
-    color: #FFD700;
-    text-decoration: none;
-}
-footer a:link, footer a:visited{
-    text-decoration:none;
-} 
-footer a:hover, footer a:active {
-   text-decoration:none;
-   opacity: .5;
+#view{
+    min-height: 485px;
+    border: 1px solid #FFD700;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    overflow-y: auto;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px #FFD700;
+    transition: .5s;
 }
 .svg{
     width:50px;
 }
 #GS{
-    transition: 1s;
+    width:150px;
+    height:30px;
+    background-color: black;
+    color: #FFD700;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: .8s;
 }
 #GS:hover{
-    opacity: .2;
+    scale: 1.2;
+    cursor: pointer;
 }
 #usernameInput{
     border:1px solid white;
@@ -308,6 +309,24 @@ footer a:hover, footer a:active {
     border-radius: 10px;
     margin:0px 10px;
     margin-bottom: 10px; 
+}
+footer ul{
+    display: flex;
+    list-style: none;
+}
+footer ul li{
+    flex: 1;  
+}
+footer ul li button {
+    width: 100%;           
+    height: 100%;
+    background-color: rgb(15, 15, 15);
+    color: #FFD700;
+    border:none;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px 0;     
+    text-shadow: 5px 5px 5px #FFD700;
 }
 
 @media (max-width: 1100px) {
@@ -327,18 +346,17 @@ footer a:hover, footer a:active {
         min-height: 300px; 
         align-items: center;
         justify-content: center;
-        height:95%;
+        height:85%;
         overflow-y: auto;
     }
     #loginCard, #signUpCard {
         display: flex;
-        flex-direction: column; 
         align-items: center;  
         justify-content: center; 
-        width:80%;
+        width:75%;
         margin:20px auto;
     }
-    #oLogin, #loginCard input, #signUpCard input{
+    #loginCard input, #signUpCard input{
         width:95%;
         margin:15px;
     }
@@ -354,10 +372,19 @@ footer a:hover, footer a:active {
         max-width: none;        
         align-items: center;
     }
-    #view {
+    /* #view {
         width: 83% !important; 
         min-height: 300px;
         height: auto;     
+    } */
+    #views{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width:83%;
+    }
+    .notesHeading{
+        text-align: center;
     }
     #buttons {
         display: flex;
@@ -365,7 +392,8 @@ footer a:hover, footer a:active {
         margin-top: 20px; 
         padding-bottom: 20px; 
     }
-    footer p, footer a{
-        margin:0px 5px;
+    #copyRight{
+        font-size: 10px;
     }
+   
 }

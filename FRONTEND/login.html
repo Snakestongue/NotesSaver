@@ -2,7 +2,6 @@
     <head>
         <link rel="stylesheet" href="style.css">
         <title>Note Saver || Login</title>
-        <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -15,22 +14,26 @@
                 <ul id="navList">
                     <li><button class="navs hovers" id="login">Login</button></li>
                     <li><button id="SUP" class="navs hovers">Sign Up</button></li>
-                    <li><button id="colorSwitch" class="navs">ColorSwitch</button></li>
-                    <li><button id="qa" class="navs hovers">Q and A</button></li>  
+                    <li><button id="qa" class="navs hovers">FAQ</button></li>  
                 </ul>
             </nav>
             <main>
                 <div id = "loginCard">
                     <h1>Login to your account</h1>
+                    <p id="loginUN" class="titleBackend">Username</p>
                     <input type="text" id="userName" placeholder="Username" class="logins">
+                    <p id="loginPass" class="titleBackend">Password</p>
                     <input type="password" id="passWord" placeholder="Password" class="logins">
+                    <br>
                     <button id="oLogin">Login</button>
-                    <p class="warning">All passwords must be 6+ characters</p>
                 </div>
             </main>
            <footer>
-                <a id="footerLink" href="https://github.com/Snakestongue">Github</a>  
-                <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
+                <ul id="footerList">
+                    <li><button id="footerGithub" class="footerButtons navs hovers">Github</button></li>
+                    <li><button id="copyRight" class="footerButtons" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
+                    <li><button id="colorSwitch" class="footerButtons navs hovers">ColorSwitch</button></li>
+                </ul>
             </footer>
         </div>
         <script src="script.js"></script>
@@ -40,7 +43,7 @@
             let login = document.getElementById("login");
             let q = document.getElementById("qa")
             let sup = document.getElementById("SUP")
-
+            let footerGithub = document.getElementById("footerGithub")
             oLogBut.addEventListener("click", async function() {
                 let username = document.getElementById("userName").value.trim();
                 let password = document.getElementById("passWord").value.trim();
@@ -69,8 +72,12 @@
                     alert("Internal Server Error");
                 }
             });
+            colorSwitchButton.addEventListener("click", function(){
+                boo = !boo; 
+                colorSwitchLogin(); 
+                colorSwitchUniversal();
+            });
 
-            colorSwitchButton.addEventListener("click", colorSwitchLogin);
             login.addEventListener("click", function() {
                 window.location.href = "login.html";
             });
@@ -81,6 +88,9 @@
             sup.addEventListener("click", function() {
                 window.location.href = "signup.html";
             });
+            footerGithub.addEventListener("click", function(){
+                window.location.href = "https://github.com/Snakestongue"
+            })
         </script>
     </body>
 </html>

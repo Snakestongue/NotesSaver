@@ -15,24 +15,29 @@
                 <ul id="navList">
                     <li><button class="navs hovers" id="login">Login</button></li>
                     <li><button id="SUP" class="navs hovers">Sign Up</button></li>
-                    <li><button id="colorSwitch" class="navs">ColorSwitch</button></li>
-                    <li><button id="qa" class="navs hovers">Q and A</button></li>
+                    <li><button id="qa" class="navs hovers">FAQ</button></li>  
                 </ul>
             </nav>
             <main>
                 <div id = "signUpCard">
                     <h1>Create your account</h1>
+                    <p id="supUN" class="titleBackend">Username</p>
                     <input type="text" id="userName" placeholder="Username" class="logins">
+                    <p id="supPASS" class="titleBackend">Password</p>
                     <input type="password" id="passWord" placeholder="Password" class="logins">
-                    <input type="text" id="eMail" placeholder="email" class="logins">
+                    <p id="supEmail" class="titleBackend">Email</p>
+                    <input type="email" id="eMail" placeholder="Email" class="logins">
                     <button id="oLogin">Login</button>
                     <p class="warning">All passwords must be 6+ characters</p>
                     <p class="warning">All emails must be valid emails.</p>
                 </div>
             </main>
            <footer>
-                <a id="footerLink" href="https://github.com/Snakestongue">Github</a>  
-                <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
+                <ul id="footerList">
+                    <li><button id="footerGithub" class="footerButtons navs hovers">Github</button></li>
+                    <li><button id="copyRight" class="footerButtons" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
+                    <li><button id="colorSwitch" class="footerButtons navs hovers">ColorSwitch</button></li>
+                </ul>
             </footer>
         </div>
         <script src="script.js"></script>
@@ -42,7 +47,7 @@
             let login = document.getElementById("login");
             let q = document.getElementById("qa")
             let sup = document.getElementById("SUP")
-
+            let footerGithub = document.getElementById("footerGithub")
             oLogBut.addEventListener("click", async function() {
                 let username = document.getElementById("userName").value;
                 let password = document.getElementById("passWord").value;
@@ -77,8 +82,11 @@
                 }
             });
 
-            colorSwitchButton.addEventListener("click", colorSwitchSignUp);
-           
+            colorSwitchButton.addEventListener("click", function(){
+                boo = !boo; 
+                colorSwitchSignUp(); 
+                colorSwitchUniversal();
+            });
             login.addEventListener("click", function() {
                 window.location.href = "login.html";
             });
@@ -90,6 +98,9 @@
             
                 window.location.href = "signup.html";
             });
+            footerGithub.addEventListener("click", function(){
+                window.location.href = "https://github.com/Snakestongue"
+            })
         </script>
     </body>
 </html>

@@ -14,8 +14,7 @@
                 <ul id="navList">
                     <li><button class="login navs hovers">Login</button></li>
                     <li><button id="SUP" class="navs hovers">Sign Up</button></li>
-                    <li><button id="colorSwitch" class="navs">ColorSwitch</button></li>
-                    <li><button id="qa" class="navs hovers">Q and A</button></li>
+                    <li><button id="qa" class="navs hovers">FAQ</button></li>
                 </ul>
             </nav> 
             <main>
@@ -25,14 +24,14 @@
                         <p id="sideContent">Organize your thoughts, save important notes, and access them anytime. <br>
                         Website still under construction. For best results use a computer
                         </p>
-                    <button class="login" id="GS">Get Started</button>
+                    <button id="GS">Get Started</button>
                     </div>
                     <div id = "sideIndex">
                         <h2>Why use Notes Saver?</h2>
                         <div class="whyNS">
                             
                             <div class="reasons">
-                            <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <svg class="svg size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                             </svg>
 
@@ -53,18 +52,26 @@
                 </div>
             </main>
             <footer>
-                <a id="footerLink" href="https://github.com/Snakestongue">Github</a>  
-             <p>&copy; 2026 Notes Saver by Snakestongue. All rights reserved.</p>
+                <ul id="footerList">
+                    <li><button id="footerGithub" class="footerButtons navs hovers">Github</button></li>
+                    <li><button id="copyRight" class="footerButtons" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
+                    <li><button id="colorSwitch" class="footerButtons navs hovers">ColorSwitch</button></li>
+                </ul>
             </footer>
         </div>
         <script src="FRONTEND/script.js"></script>
         <script>
             let colorSwitchButton = document.getElementById("colorSwitch");
-            colorSwitchButton.addEventListener("click", colorSwitchMAIN);
+            colorSwitchButton.addEventListener("click", function(){
+                boo = !boo; 
+                colorSwitchIndex(); 
+                colorSwitchUniversal();
+            });
             let login1 = document.getElementsByClassName("login")[0];
-            let login2 = document.getElementsByClassName("login")[1];
+            let login2 = document.getElementById("GS");
             let sup = document.getElementById("SUP")
             let q = document.getElementById("qa")
+            let footerGithub = document.getElementById("footerGithub")
             login1.addEventListener("click", function() {
                 window.location.href = "FRONTEND/login.html";
             });
@@ -76,6 +83,9 @@
             });
             sup.addEventListener("click", function(){
                 window.location.href = "FRONTEND/signup.html";
+            })
+            footerGithub.addEventListener("click", function(){
+                window.location.href = "https://github.com/Snakestongue"
             })
         </script>
     </body>
