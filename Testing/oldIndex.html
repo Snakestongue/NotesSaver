@@ -8,31 +8,23 @@
     <body>
         <div id="parent">
             <header>
-                    <img id="headerIMG" src="image.png">
+                <a href="index.html" id="headTitle">Notes Saver by <span id="tongue">Snakestongue</span></a>
             </header>
             <nav>
-                <a href="../index.html"><img id="headerIMG" src="../image.png"></a>
-                <!-- <p id="headTitle">Notes Saver by <span id="tongue">Snakestongue</span></p> -->
                 <ul id="navList">
-                    <li id="dropdownContainer">
-                        <span id="dropdownArrow">⬇⬇⬇</span>
-                        <ul id="innerULNAV">
-                            <li><button class="dropdown" id="home">Home</button></li>
-                            <li><button class="dropdown" id="login">Login</button></li>
-                            <li><button class="dropdown" id="signUp">Sign Up</button></li>
-                            <li><button class="dropdown" id="faq">FAQ</button></li>
-                        </ul>
-                    </li>
+                    <li><button class="login navs hovers">Login</button></li>
+                    <li><button id="SUP" class="navs hovers">Sign Up</button></li>
+                    <li><button id="qa" class="navs hovers">FAQ</button></li>
                 </ul>
-            </nav>
+            </nav> 
             <main>
                 <div id = "indexOver">
                     <div id = "mainIndex">
                         <h1 id="sideHead">Welcome to Notes Saver!</h1>
-                        <p id="sideContent">Organize your thoughts, save important notes, and access them anytime. <br> </p>
-                        <button id="GS">Get Started</button>
-                        <br>
-                        </div>
+                        <p id="sideContent">Organize your thoughts, save important notes, and access them anytime. <br>
+                        </p>
+                    <button id="GS">Get Started</button>
+                    </div>
                     <div id = "sideIndex">
                         <h2>Why use Notes Saver?</h2>
                         <div class="whyNS">
@@ -61,33 +53,39 @@
             <footer>
                 <ul id="footerList">
                     <li><button id="github">Github</button></li>
-                    <!-- <li><button>ColorSwitch</button></li> -->
-                    <li><button  id="footerDisable" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.6</button></li>
+                    <li><button disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
+                    <li><button>ColorSwitch</button></li>
                 </ul>
             </footer>
         </div>
-        <script src="FRONTEND/scripting.js"></script>
+        <script src="FRONTEND/script.js"></script>
         <script>
-            let GS = document.getElementById("GS")
-            let login = document.getElementById("login")
-            let signUp = document.getElementById("signUp");
-            let home = document.getElementById("home")
-            let faq = document.getElementById("faq")
+            let colorSwitchButton = document.getElementById("colorSwitch");
+            colorSwitchButton.addEventListener("click", function(){
+                boo = !boo; 
+                colorSwitchIndex(); 
+                colorSwitchUniversal();
+            });
+            if (boo==false){
+                colorSwitchIndex(); 
+                colorSwitchUniversal();
+            }
+            let login1 = document.getElementsByClassName("login")[0];
+            let login2 = document.getElementById("GS");
+            let sup = document.getElementById("SUP")
+            let q = document.getElementById("qa")
             let footerGithub = document.getElementById("github")
-            login.addEventListener("click", function() {
+            login1.addEventListener("click", function() {
                 window.location.href = "FRONTEND/login.html";
             });
-            signUp.addEventListener("click", function() {
+            login2.addEventListener("click", function() {
                 window.location.href = "FRONTEND/signup.html";
             });
-            GS.addEventListener("click", function() {
-                window.location.href = "FRONTEND/signup.html";
-            });
-            home.addEventListener("click", function(){
-                window.location.href = "index.html";
-            })
-            faq.addEventListener("click", function(){
+            q.addEventListener("click", function() {
                 window.location.href = "FRONTEND/qAndA.html";
+            });
+            sup.addEventListener("click", function(){
+                window.location.href = "FRONTEND/signup.html";
             })
             footerGithub.addEventListener("click", function(){
                 window.location.href = "https://github.com/Snakestongue"

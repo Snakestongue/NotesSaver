@@ -92,6 +92,7 @@ function colorSwitchLogin(){
         logins.style.border = "1px solid #00ff2f"
         logins.style.boxShadow = "0 0 20px #00ff2f"
         oLogin.style.border = "1.5px solid #00ff2f"
+        oLogin.style.backgroundColor = "#00ff2f"
     }else{
         for(let j=0; j<input.length; j++){
             input[j].style.borderColor = "#FFD700";   
@@ -100,6 +101,8 @@ function colorSwitchLogin(){
         logins.style.border = "1px solid #FFD700"
         logins.style.boxShadow = "0 0 20px #FFD700"
         oLogin.style.border = "1.5px solid #FFD700"
+        oLogin.style.backgroundColor = "#FFD700"
+
     }
 }
 function colorSwitchSignUp(){
@@ -115,6 +118,7 @@ function colorSwitchSignUp(){
         signUpCard.style.border = "1px solid #00ff2f"
         signUpCard.style.boxShadow = "0 0 20px #00ff2f"
         oLogin.style.border = "1.5px solid #00ff2f"
+        oLogin.style.backgroundColor = "#00ff2f"
     }else{
         for(let j=0; j<input.length; j++){
             input[j].style.borderColor = "#FFD700";  
@@ -123,6 +127,7 @@ function colorSwitchSignUp(){
         signUpCard.style.border = "1px solid #FFD700"
         signUpCard.style.boxShadow = "0 0 20px #FFD700"
         oLogin.style.border = "1.5px solid #FFD700"
+        oLogin.style.backgroundColor = "#FFD700"
     }
 }
 
@@ -160,3 +165,4 @@ function colorSwitchFAQ(){
         card.style.boxShadow = "0 0 20px #FFD700"
     }
 }
+

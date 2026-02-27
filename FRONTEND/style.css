@@ -1,9 +1,321 @@
-body, header, div, #parent, main, nav ul, footer, footer ul{
+*{
+    box-sizing: border-box;
+}
+body, div, #parent, main, nav ul, footer, footer ul{
     margin:0px;
     padding:0px;
-    font-family: sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 #parent{
+    flex: 1;
+    display: grid;
+    margin:0px;
+    min-height: 100vh;
+    padding:0px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+        "nav"
+        "content"
+        "footer";
+}
+header{
+    display: none;
+    grid-area:header;
+}
+main{
+    grid-area: content;
+    background-color: rgb(150, 150, 150);
+    display: flex;       
+    justify-content: center;   
+    align-items: flex-start;
+    padding: 40px 0;
+    width: 100%;
+    flex:1;
+}
+#notesMAIN{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+img{
+    width:200px;
+    margin-left: 10px;
+}
+nav{
+    grid-area: nav;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(180, 180, 180);
+    position: sticky;
+    top:0;
+    z-index: 2000;
+    box-shadow: 0 2px 30px rgba(46, 125, 50, .5);
+}
+#innerULNAV{
+    z-index: 1000;
+}
+nav ul, footer ul{
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+nav ul li, footer ul li{
+    margin: 0px 30px;
+}
+nav ul li button, footer ul li button{
+    background-color: transparent;
+    border: 1px solid #2E7D32; 
+    color: #121212;
+    padding: 15px 30px;
+    margin: 10px 0px;
+    width: auto;
+    border-radius: 10px;
+    transition: .5s;
+    font-weight: 700;
+}
+nav ul li button:hover, footer ul li button:hover, .button:hover{
+    background-color: rgba(46, 125, 50, 0.1); 
+    border-color: #2E7D32; 
+    cursor: pointer;
+}
+#dropdownArrow{
+    display: none; 
+    color: #2E7D32;
+    
+}
+#navIMG{
+    display: inline;
+}
+
+#indexOver{
+    color:white;
+    display: flex;
+    flex-direction: row;
+    gap:50px;
+    width: 85%;
+    height:auto;
+}
+#mainIndex, #sideIndex{
+    flex: 1;
+    border: 1px solid rgba(46, 125, 50, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+    background-color: rgb(245, 245, 245);
+    margin: 50px 2px;
+    width: 45%;
+    color:#121212;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(46, 125, 50, 0.2);
+}
+#mainIndex{
+    position: relative; 
+    z-index: 1;
+}
+
+#GS, #oLogin{
+    margin-top: 10px;
+    font-weight: 600;
+    background-color: transparent;
+    color: #121212;
+    border: 1px solid #2E7D32;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    transition: .5s;
+}
+#oLogin{
+    margin: 25px 0px;
+    margin-bottom: 30px;
+}
+#GS:hover, #oLogin:hover{
+    font-size: 25px;
+    background-color: rgba(46, 125, 50, 0.1); 
+    border-color: #2E7D32;
+    cursor: pointer;
+}
+#loginCard, #signUpCard{
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #2E7D32;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    padding: 40px;
+    margin: 20px auto;
+    height: auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(46, 125, 50, 0.2);-shadow: 0 4px 20px #2E7D32;
+}
+#faqMain, #ppMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#faqCard{
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #2E7D32;
+    border-radius: 10px;
+    color: black;
+    max-width: 1000px;
+    height:auto;
+    padding: 20px;
+}
+#ppCard{
+    background-color: white;
+    border: 1px solid #2E7D32;
+    color:black;
+    border-radius: 10px;
+    max-width: 1000px;
+    padding:25px;
+    height:auto;
+}
+.logins, .logins:-webkit-autofill, .logins:-webkit-autofill:hover, .logins:-webkit-autofill:focus {
+    background-color: #ffffff !important;
+    color: #121212 !important;
+    border: 2px solid #2E7D32; 
+    filter: none; 
+    -webkit-text-fill-color: #121212 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 600px;
+    width: 75%;
+}
+
+.svg{
+    width:50px;
+}
+
+
+footer{
+    grid-area:footer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(180, 180, 180);
+    box-shadow: 0 2px 30px rgba(46, 125, 50, .5);
+}
+
+
+
+#lSUP{
+    margin-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 15px;
+    width: 85%;
+    text-align: center;
+}
+#footerDisable:hover{
+    cursor:default;
+    background-color: transparent;
+}
+
+#overall{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 100px;              
+    width: 100%;          
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lefts, #views {
+    display: flex;
+    flex-direction: column;
+    width: 100%;         
+    max-width: 500px;     
+    gap: 15px;
+}
+
+#title, #textbox, #view{
+    width: 100%;        
+    max-width: 700px;
+    border: 1px solid #2E7D32;
+    box-shadow: 0 0 20px rgba(46, 125, 50, .2);
+    border-radius: 10px;
+    transition: .5s;
+    margin: 0px;
+    box-sizing: border-box; 
+    padding:10px;
+    color:black;
+    font-size: 17px;
+    background-color: rgb(245, 245, 245);
+    overflow-y: auto;
+}
+#title{
+    height: 60px;           
+    flex-shrink: 0;   
+    overflow-y: auto; 
+}
+#textbox {
+    height: 388px; 
+    overflow-y: auto;
+}
+#view{
+    height: 485px;
+    overflow-y: auto;
+}
+.notesHeading{
+    color:white;
+    margin: 0px;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: row;
+}
+.button{
+    margin:10px;
+    background-color: rgb(245, 245, 245);
+    width:200px;
+    border: none;
+    border-radius: 5px;
+    border-left: 3px solid #2E7D32;
+    transition: .5s;
+    padding: 10px;
+    height: auto;
+}
+.button:hover{
+    font-size: 20px;
+}
+#usernameNotes:hover{
+    cursor: default;
+}
+#ppcheck{
+    display: flex;
+    flex-direction: row;
+}
+#pp{
+   background-color: black;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+#pp:hover{
+    cursor: pointer;
+}
+#ppLink, .opposite{
+    color: black;
+    text-decoration: underline;
+    transition: .5s;
+}
+#ppLink:hover, .opposite:hover{
+    opacity: .5;
+}
+
+
+
+@media (max-width: 1100px) {
+    #parent{
+    flex: 1;
     display: grid;
     margin:0px;
     min-height: 100vh;
@@ -16,385 +328,74 @@ body, header, div, #parent, main, nav ul, footer, footer ul{
         "nav"
         "content"
         "footer";
-}
-header{
-    grid-area:header;
-    background-color: rgb(0, 0, 0);
-    padding:20px;
-    position: sticky;
-    top:0;
-}
-#tongue{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color:white;
-    margin-left:10px;
-    text-shadow: 5px 5px 8px white;
-}
-#headTitle{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    transition: .5s;
-    text-shadow: 5px 5px 8px #FFD700;
-    border: none;
-}
-#headTitle:hover{
-    opacity: .5;
-}
-img{
-    width:100px
-}
-#mainLink{
-    margin:auto;
-    color:rgb(255, 255, 255);
-}
-nav ul{
-    display: flex;
-    list-style: none;
-}
-nav ul li{
-    flex: 1;  
-}
-nav ul li button {
-    width: 100%;           
-    height: 100%;
-    background-color: rgb(15, 15, 15);
-    color: #FFD700;
-    border:none;
-    cursor: pointer;
-    text-align: center;
-    padding: 20px 0;     
-    text-shadow: 5px 5px 5px #FFD700;
-}
-header a:link, header a:visited{
-    text-decoration:none;
-    color: #FFD700;
-}
-header a:hover, header a:active {
-    color:#FFD700;
-    text-decoration:none;
-}
-#indexOver{
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-    align-items: flex-start;  
-    width: 100%;            
-    gap: 20px;
-}
-#sideIndex, #mainIndex{
-    height:500px;
-    width:45%;
-    background-color: black;
-    border:1px solid #FFD700;;
-    border-radius: 10px;
-    padding:30px;
-    color: white;
-    margin:50px 30px;
-    box-shadow: 0 4px 20px #FFD700;
-    transition: .5s;
-}
-#QANDACARD{
-    font-size: 17px;
-    font-family: sans-serif;
-    height:500px;
-    width:65%;
-    background-color: black;
-    border:1px solid #FFD700;;
-    border-radius: 10px;
-    padding:30px;
-    color: white;
-    margin: auto;
-    margin-top:50px;
-    overflow-y: auto;
-    box-shadow: 0px 4px 20px #FFD700;
-    transition: .5s;
-}
-#sideIndex, #QANDACARD, #mainIndex{
-    min-height: 500px
-}
-#saveButton, #getButton{
-    transition: .5s;
-}
-#saveButton:hover, #getButton:hover{
-    cursor: pointer;
-    box-shadow: inset 0px 0px 20px white; 
-}
-.hovers{
-    transition: 1s;
-}
-#copyRight:hover{
-    cursor: default;
-}
-main {
-    grid-area: content;
-    background-color: black;
-    overflow-y: auto;  
-    display: flex;       
-    flex-direction: column;   
-    justify-content: center;   
-    align-items: center;      
-    padding: 20px 0;
-}
-#loginCard input{
-    width:85%;
-    max-width: 350px;
-    height:50px;
-    filter: drop-shadow(2px 2px 4px #FFD700);
-    margin: 8px 0px;
-    padding: 8px;
-}
-#signUpCard input{
-    width:85%;
-    max-width: 350px;
-    height:50px;
-    filter: drop-shadow(2px 2px 4px #FFD700);
-    margin: 0px 0px;
-    padding: 8px;
-}
-input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
-    background-color: black;
-    color: white;
-    border: 1px solid #FFD700;
-    border-radius: 2px; 
-    transition: background-color 5000s ease-in-out 0s; 
-    -webkit-text-fill-color: white !important;
-    -webkit-box-shadow: 0 0 0px 1000px black inset !important;
-}
-#signUpCard, #loginCard{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid #FFD700;
-    color: white;
-    padding: 30px;
-    border-radius: 10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    width:85%;
-    max-width: 400px;
-    height: 85%;
-    max-height: 450px;
-    box-shadow: 0 0 20px #FFD700;
-    transition: .5s;
-} 
-#signUpCard{
-    height: 95%;
-    max-height: 600px;
-    margin: 30px 0px;
-}
-#oLogin{
-    background-color: black;
-    color:white;
-    width:85%;
-    height:50px;
-    border: 1.5px solid #FFD700;
-    border-radius: 10px;
-    transition: .5s;
-    margin-top:30px;
-}
-#oLogin:hover{
-    opacity: .5;
-    cursor: pointer;
-}
-#overall{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center; 
-    gap: 45px;              
-    padding: 40px;      
-    width: 95%;
-    box-sizing: border-box; 
-}
-.lefts{
-   display: flex;
-    flex-direction: column;
-    width: 100%; 
-    max-width: 600px; 
-    flex-shrink: 0;
-    gap: 15px;
-}
-.stacked{
-    display: flex;
-    flex-direction: column;
-}
-.noteCards{
-    transition: transform 1s ease-in-out;
-}
-.noteCards:hover{
-    transform: scale(1.1);
-}
-#title{
-    height: 60px;           
-    flex-shrink: 0;
-    max-width:600px;
-    margin: 20px auto;
-    border: 1px solid #FFD700;
-    box-shadow: 0 0 20px #FFD700;
-    border-radius: 10px;
-    color: white;
-    padding: 15px;
-    overflow-y: auto;
-    box-sizing: border-box; 
-    margin: 0 0 10px 0;
-    width: 100%;
-    transition: .5s;
-}
-#textbox {
-    width: 100%;
-    min-height: 310px; 
-    border: 1px solid #FFD700;
-    border-radius: 10px;
-    padding: 15px;
-    color: white;
-    overflow-y: auto;
-    box-sizing: border-box; 
-    box-shadow: 0 0 20px #FFD700;
-    transition: .5s;
-}
-
-#keyboard{
-    text-align: center;
-}
-#buttons{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin-top:50px;
-}
-.notesHeading{
-    color:white;
-}
-#views{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-#view{
-    min-height: 485px;
-    border: 1px solid #FFD700;
-    border-radius: 10px;
-    padding: 15px;
-    color: white;
-    overflow-y: auto;
-    box-sizing: border-box;
-    box-shadow: 0 0 20px #FFD700;
-    transition: .5s;
-}
-.svg{
-    width:50px;
-}
-#GS{
-    width:150px;
-    height:30px;
-    background-color: black;
-    color: #FFD700;
-    border: 2px solid white;
-    border-radius: 10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    transition: .8s;
-}
-#GS:hover{
-    scale: 1.2;
-    cursor: pointer;
-}
-#usernameInput{
-    border:1px solid white;
-    border-radius: 10px;
-    height:30px;
-}
-.button{
-    background-color: black;
-    color:white;
-    border:1px solid white;
-    width:120px;
-    height:30px;
-    border-radius: 10px;
-    margin:0px 10px;
-    margin-bottom: 10px; 
-}
-footer ul{
-    display: flex;
-    list-style: none;
-}
-footer ul li{
-    flex: 1;  
-}
-footer ul li button {
-    width: 100%;           
-    height: 100%;
-    background-color: rgb(15, 15, 15);
-    color: #FFD700;
-    border:none;
-    cursor: pointer;
-    text-align: center;
-    padding: 20px 0;     
-    text-shadow: 5px 5px 5px #FFD700;
-}
-
-@media (max-width: 1100px) {
-    #indexOver {
-        display: flex;
-        flex-direction: column;
-        justify-content: center; 
-        align-items: flex-start;  
-        width: 85%;            
-        gap: 50px;
-        height:125%;
     }
-
-    #sideIndex, #mainIndex {
-        width: 85% !important;
-        margin: 20px -10px !important;  
-        min-height: 300px; 
-        align-items: center;
+    header{
+        display: flex;
         justify-content: center;
-        height:85%;
-        overflow-y: auto;
+        background-color: rgb(180, 180, 180); 
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
     }
-    #loginCard, #signUpCard {
+    #headerIMG{
+        padding:10px;
+    }
+   #navIMG{
+        display: none;
+    }
+    nav ul, footer ul{
         display: flex;
-        align-items: center;  
-        justify-content: center; 
-        width:75%;
-        margin:20px auto;
-    }
-    #loginCard input, #signUpCard input{
-        width:95%;
-        margin:15px;
-    }
-    #overall {
-        flex-direction: column; 
-        align-items: center;   
-        padding: 20px 10px;   
+        flex-direction: row;
+        flex-wrap: wrap; 
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        box-sizing: border-box;
+        overflow: hidden;
     }
-    .lefts{
-        width: 83%;            
-        max-width: none;        
+    nav ul li, footer ul li{
+        margin: 5px;
+    }
+    nav ul li button, footer ul li button{
+        padding: 10px 17px;         
+        font-size: 14px; 
+        margin: auto;         
+    }
+    #indexOver{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
-    /* #view {
-        width: 83% !important; 
-        min-height: 300px;
-        height: auto;     
-    } */
-    #views{
+    #sideIndex, #mainIndex{
+        width:95%;
+        margin: 0px;
+    }
+
+    #loginCard{
+        margin: 60px 0px;
+    }
+    #faqCard, #ppCard{
+        width: 95%;
+        height:100%;
+        padding: 20px;
+    }
+    #overall{
         display: flex;
         flex-direction: column;
-        flex: 1;
-        width:83%;
+        justify-content: center;
+        align-items: center;
+        gap: 20px !important; 
     }
-    .notesHeading{
-        text-align: center;
-    }
-    #buttons {
+    #buttons{
         display: flex;
         flex-direction: column;
-        margin-top: 20px; 
-        padding-bottom: 20px; 
     }
-    #copyRight{
-        font-size: 10px;
+    .button{
+        height:30px;
     }
-   
+    #title, #textbox, #view, .notesHeading {
+        width: 100%;
+        margin: 0px auto 0px auto;  
+    }
+
 }
+

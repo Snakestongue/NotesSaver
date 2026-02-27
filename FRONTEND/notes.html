@@ -7,70 +7,124 @@
     </head>
     <body>
         <div id="parent">
-           <header>
-                <a href="../index.html" id="headTitle">Notes Saver by <span id="tongue">Snakestongue</span></a>
+            <header>
+                    <img id="headerIMG" src="../image.png">
             </header>
             <nav>
+                <a href="../index.html"><img id="headerIMG" src="../image.png"></a>
                 <ul id="navList">
-                    <li><button class="navs hovers" id="login">Login</button></li>
-                    <li><button id="SUP" class="navs hovers">Sign Up</button></li>
-                    <li><button id="qa" class="navs hovers">FAQ</button></li>  
+                    <li id="dropdownContainer">
+                        <span id="dropdownArrow">⬇⬇⬇</span>
+                        <ul id="innerULNAV">
+                            <li><button class="dropdown" id="home">Home</button></li>
+                            <li><button class="dropdown" id="login">Login</button></li>
+                            <li><button class="dropdown" id="signUp">Sign Up</button></li>
+                            <li><button class="dropdown" id="faq">FAQ</button></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
-            <main>
+            <main id="notesMAIN">
                 <div id="overall">
                     <div class="lefts">
-                        <h3 id="notesTitle" class="notesHeading">Title</h3>
-                        <div id="title" class="stacked noteCards" contenteditable="true">Note Title Here...</div>
-                        <h3 id="notesContent" class="notesHeading">Content</h3>
-                        <div id="textbox" class="stacked noteCards" contenteditable="true">Start typing note...</div>
+                        <h3 class="notesHeading" id="titleHead">Title</h3>
+                        <div id="title" contenteditable="true">Note Title Here...</div>
+                        
+                        <h3 class="notesHeading">Content</h3>
+                        <div id="textbox" contenteditable="true">Start typing note...</div>
                     </div>
+
                     <div id="views">
-                        <h3 id="notesView" class="notesHeading">View your notes</h3>
+                        <h3 class="notesHeading">View your notes</h3>
                         <div id="view" class="noteCards">Click get to view notes...</div>
                     </div>
                 </div>
                 <div id="buttons">
-                    <input type="text" id="userNameInput" placeholder="username" class="button" disabled>  
-                    <button id="saveButton" class="button">Save</button>
-                    <button id="getButton" class="button">Get</button>
+                    <input type="text" placeholder="username" class="button" id="usernameNotes" disabled>  
+                    <button class="button" id="saveButton">Save</button>
+                    <button class="button" id="getButton">Get</button>
+                    <button class="button" id="enhance">AI Enhance</button>
+                    <button class="button" id="edit">Edit</button>
                 </div>
             </main>
-            <footer>
+           <footer>
                 <ul id="footerList">
-                    <li><button id="footerGithub" class="footerButtons navs hovers">Github</button></li>
-                    <li><button id="copyRight" class="footerButtons" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
-                    <li><button id="colorSwitch" class="footerButtons navs hovers">ColorSwitch</button></li>
+                    <li><button id="github">Github</button></li>
+                    <li><button  id="footerDisable" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
                 </ul>
             </footer>
         </div>
-        <script src="script.js"></script>
+        <script src="scripting.js"></script>
         <script>
             let titles = document.getElementById("title")
             let textBOX = document.getElementById("textbox");
             let view = document.getElementById("view");
-
-            let username = document.getElementById("userNameInput");
+            let username = document.getElementById("usernameNotes");
             let saveButton = document.getElementById("saveButton")
             let getButton = document.getElementById("getButton")
-            let footerGithub = document.getElementById("footerGithub")
+            let footerGithub = document.getElementById("github")
             let colorSwitchButton = document.getElementById("colorSwitch");
             let sup = document.getElementById("SUP")
             let login = document.getElementById("login");
             let q = document.getElementById("qa")
-            
+            let enhance = document.getElementById("enhance")
+            let edit = document.getElementById("edit")
+            login.addEventListener("click", function() {
+                window.location.href = "login.html";
+            });
+            signUp.addEventListener("click", function() {
+                window.location.href = "signup.html";
+            });
+            home.addEventListener("click", function(){
+                window.location.href = "../index.html";
+            })
+            faq.addEventListener("click", function(){
+                window.location.href = "qAndA.html";
+            })
+            footerGithub.addEventListener("click", function(){
+                window.location.href = "https://github.com/Snakestongue"
+            })
+
             window.onload = function() {
                 let savedName = localStorage.getItem("userName");
                 if (savedName) {
-                    document.getElementById("userNameInput").value = savedName;
+                    document.getElementById("usernameNotes").value = savedName;
                 }
             };
 
+            enhance.addEventListener("click", async function () {
+                let content = textBOX.innerText;
+                let title = titles.innerText;
+                if (!content || !title || content == "Start typing note..." || title == "Note Title Here..."){
+                    alert("Please update text!");
+                    return;
+                }
+                alert("Enhancing your notes. Please wait.")
+                try {
+                    const response = await fetch("/api/v1/users/generate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            title: title,
+                            content: content
+                        })
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        textBOX.innerText = data.result; 
+                    } else {
+                        alert("Failed: " + data.message);
+                    }
+
+                } catch (error) {
+                    alert("Internal server error");
+                }
+            });                
             saveButton.addEventListener("click", async function(){
                 let content = document.getElementById("textbox").innerText.trim();   
                 let title = document.getElementById("title").innerText.trim(); 
-                let userNameInput = username.value; 
-                if (!content || !userNameInput || !title) {
+                let usernameNotes = username.value; 
+                if (!content || !usernameNotes || !title) {
                     alert("Please fill out the textbox!");
                     return;
                 }
@@ -83,7 +137,7 @@
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            username: userNameInput,
+                            username: usernameNotes,
                             content: content,
                             title: title
                         })
@@ -97,14 +151,13 @@
                         alert("Failed: " + wait.message);
                     }
                 }catch (error) {
-                    console.error(error); 
                     alert("Internal issue");
                 }
             });
             getButton.addEventListener("click", async function(){
-                let userNameInput = username.value;
+                let usernameNotes = username.value;
                 try{
-                    const response = await fetch(`/api/v1/users/notes?username=${userNameInput}`, { 
+                    const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 
                         method: "GET"
                     });
                     const data = await response.json(); 
@@ -112,9 +165,9 @@
                         view.innerHTML = ""; 
                         data.notes.forEach(note => {
                             view.innerHTML += `
-                            <h3>${note.title}</h3>
-                            <p>${note.content}</p>
-                            `;        
+                                <h3>${note.title}</h3>
+                                <p>${note.content.replace(/\n/g, "<br>")}</p>
+                            `;                            
                         });
                          alert("Notes uploaded")
                     }else {
@@ -125,24 +178,31 @@
                 }
             });
 
-            colorSwitchButton.addEventListener("click", function(){
-                boo = !boo; 
-                colorSwitchNotes(); 
-                colorSwitchUniversal();
+            edit.addEventListener("click", async function(){
+                let usernameNotes = username.value;
+                try{
+                    const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 
+                        method: "GET"
+                    });
+                    const data = await response.json(); 
+                    if (response.ok){
+                        textBOX.innerHTML = ""; 
+                        data.notes.forEach(note => {
+                            textBOX.innerHTML += `
+                                <h3>${note.title}</h3>
+                                <p>${note.content.replace(/\n/g, "<br>")}</p>
+                            `;                            
+                        });
+                         alert("Notes uploaded")
+                    }else {
+                        alert("Failed to retrieve notes: " + data.message);
+                    }
+                }catch (error) {
+                    alert("Internal issue");
+                }
             });
-            login.addEventListener("click", function() {
-                window.location.href = "login.html";
-            });
-            q.addEventListener("click", function() {
-                window.location.href = "qAndA.html";
-            });
-            sup.addEventListener("click", function() {
-                window.location.href = "signup.html";
-            });
-            footerGithub.addEventListener("click", function(){
-                window.location.href = "https://github.com/Snakestongue"
-            })
-         //    newKeyboard();
+
+           
         </script>
     </body>
 </html>

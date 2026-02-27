@@ -3,9 +3,9 @@ import bcrypt from "bcrypt";
 
 const register =  async(req, res) => {
     try {
-        const {username, email, password} = req.body
+        const {username, email, password, checkbox} = req.body
         //validation
-        if (!username || !email ||  !password){
+        if (!username || !email ||  !password || checkbox==false){
             return res.status(400).json({message: "All field must be filled out"});
         }
         //exist

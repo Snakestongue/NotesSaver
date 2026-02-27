@@ -9,13 +9,20 @@
     <body>
         <div id="parent">
             <header>
-                <a href="../index.html" id="headTitle">Notes Saver by <span id="tongue">Snakestongue</span></a>
+                    <img id="headerIMG" src="../image.png">
             </header>
             <nav>
+               <a href="../index.html"><img id="headerIMG" src="../image.png"></a>
                 <ul id="navList">
-                    <li><button class="navs hovers" id="login">Login</button></li>
-                    <li><button id="SUP" class="navs hovers">Sign Up</button></li>
-                    <li><button id="qa" class="navs hovers">FAQ</button></li>  
+                    <li id="dropdownContainer">
+                        <span id="dropdownArrow">⬇⬇⬇</span>
+                        <ul id="innerULNAV">
+                            <li><button class="dropdown" id="home">Home</button></li>
+                            <li><button class="dropdown" id="login">Login</button></li>
+                            <li><button class="dropdown" id="signUp">Sign Up</button></li>
+                            <li><button class="dropdown" id="faq">FAQ</button></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <main>
@@ -28,32 +35,67 @@
                     <p id="supEmail" class="titleBackend">Email</p>
                     <input type="email" id="eMail" placeholder="Email" class="logins">
                     <button id="oLogin">Sign up</button>
-                    <p class="warning">All passwords must be 6+ characters</p>
-                    <p class="warning">All emails must be valid emails.</p>
+                    <div id="ppcheck">
+                        <input id="pp" type="checkbox">
+                        <label for="pp">I have read and agree to the <a id="ppLink"href="PP.html">Privacy Policy</a></label>
+                    </div>
+                    <p id="lSUP">Already have an account? <a href="login.html" class="opposite">Login.</a></p>
                 </div>
+
             </main>
            <footer>
                 <ul id="footerList">
-                    <li><button id="footerGithub" class="footerButtons navs hovers">Github</button></li>
-                    <li><button id="copyRight" class="footerButtons" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
-                    <li><button id="colorSwitch" class="footerButtons navs hovers">ColorSwitch</button></li>
+                    <li><button id="github">Github</button></li>
+                    <li><button  id="footerDisable" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
                 </ul>
             </footer>
         </div>
-        <script src="script.js"></script>
+        <script src="scripting.js"></script>
         <script>
-            let colorSwitchButton = document.getElementById("colorSwitch");
-            let oLogBut = document.getElementById("oLogin");
-            let login = document.getElementById("login");
-            let q = document.getElementById("qa")
-            let sup = document.getElementById("SUP")
-            let footerGithub = document.getElementById("footerGithub")
+            let login = document.getElementById("login")
+            let signUp = document.getElementById("signUp");
+            let home = document.getElementById("home")
+            let faq = document.getElementById("faq")
+            let footerGithub = document.getElementById("github")
+            let oLogBut = document.getElementById("oLogin")
+            
+            login.addEventListener("click", function() {
+                window.location.href = "login.html";
+            });
+            signUp.addEventListener("click", function() {
+                window.location.href = "signup.html";
+            });
+            home.addEventListener("click", function(){
+                window.location.href = "../index.html";
+            })
+            faq.addEventListener("click", function(){
+                window.location.href = "qAndA.html";
+            })
+            footerGithub.addEventListener("click", function(){
+                window.location.href = "https://github.com/Snakestongue"
+            })
+
+            document.addEventListener("keypress", function(event) {
+                if (event.key == "Enter") {
+                    document.getElementById("oLogin").click();
+                }
+            });
+            
             oLogBut.addEventListener("click", async function() {
                 let username = document.getElementById("userName").value;
                 let password = document.getElementById("passWord").value;
                 let email = document.getElementById("eMail").value;
+                let checkbox = document.getElementById("pp").checked;
                 if (!username || !password || !email) {
                     alert("Please fill out all fields!");
+                    return;
+                }
+                if (checkbox ==false){
+                    alert("Please check if you have read and agreed to the Privacy Policy” ")
+                    return;
+                }
+                if (password.length <6){
+                    alert("Password must be 6 characters long")
                     return;
                 }
                 try{
@@ -65,11 +107,13 @@
                         body: JSON.stringify({
                             username: username,
                             email: email,
-                            password: password
+                            password: password,
+                            checkbox:checkbox
                         })
                     });
                     const wait = await response.json();
                     if (response.ok) {
+                        localStorage.setItem("privacyPolicy", checkbox)
                         localStorage.setItem("userEmail", email);
                         localStorage.setItem("userName", wait.user.user);
                         alert(wait.message);
@@ -82,25 +126,6 @@
                 }
             });
 
-            colorSwitchButton.addEventListener("click", function(){
-                boo = !boo; 
-                colorSwitchSignUp(); 
-                colorSwitchUniversal();
-            });
-            login.addEventListener("click", function() {
-                window.location.href = "login.html";
-            });
-            q.addEventListener("click", function() {
-            
-                window.location.href = "qAndA.html";
-            });
-            sup.addEventListener("click", function() {
-            
-                window.location.href = "signup.html";
-            });
-            footerGithub.addEventListener("click", function(){
-                window.location.href = "https://github.com/Snakestongue"
-            })
         </script>
     </body>
 </html>
