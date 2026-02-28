@@ -69,6 +69,8 @@
             let q = document.getElementById("qa")
             let enhance = document.getElementById("enhance")
             let edit = document.getElementById("edit")
+
+            let edits = false;
             login.addEventListener("click", function() {
                 window.location.href = "login.html";
             });
@@ -92,7 +94,8 @@
                 }
             };
 
-            enhance.addEventListener("click", async function () {
+            enhance.addEventListener("click", async function (){
+                
                 let content = textBOX.innerText;
                 let title = titles.innerText;
                 if (!content || !title || content == "Start typing note..." || title == "Note Title Here..."){
@@ -139,7 +142,8 @@
                         body: JSON.stringify({
                             username: usernameNotes,
                             content: content,
-                            title: title
+                            title: title,
+                            edit:edits
                         })
                     });
                     const wait = await response.json();
@@ -179,6 +183,7 @@
             });
 
             edit.addEventListener("click", async function(){
+                edits = true;
                 let usernameNotes = username.value;
                 try{
                     const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 

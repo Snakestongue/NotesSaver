@@ -4,6 +4,7 @@ export const saveNote = async (req, res) => {
         const username = req.body.username;
         const content = req.body.content;
         const title = req.body.title;
+        const edit = req.body.edit;
         console.log("Username:", username);
         console.log("Title:", `"${title}"`, "Length:", title?.length);
         console.log("Content:", `"${content}"`);
@@ -16,7 +17,11 @@ export const saveNote = async (req, res) => {
                 message: "User not found. Check your spelling or login again." 
             });
         }
-        user.notes.push({ content, title });
+        if (edit){
+           user.notes = [{content, title }];
+        }else{
+            user.notes.push({content, title });
+        }
         await user.save();
         res.status(201).json({
             message: "Note saved successfully",
